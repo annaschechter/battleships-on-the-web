@@ -12,8 +12,13 @@ class BattleShips < Sinatra::Base
   end
 
   post '/name' do
+
   	@name = params[:name]
-  	erb :message
+  	if @name == ""
+  		redirect '/name'
+  	else
+  	    erb :message
+    end
   end
 
 

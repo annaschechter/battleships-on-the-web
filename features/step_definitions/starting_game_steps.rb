@@ -25,3 +25,12 @@ end
 Then(/^I see "(.*?)"$/) do |anna|
 expect(page).to have_content 'Wellcome, anna!'  
 end
+
+
+When(/^I don't enter name$/) do
+fill_in 'name', :with => ''
+end
+
+Then(/^I return to the name page$/) do
+   expect(current_path).to eq '/name'
+end
