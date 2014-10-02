@@ -1,1 +1,30 @@
-<h1>Hello</h1>
+<h1>This is your board:</h1>
+
+<table border="1px"
+	<tr>
+		<td>*</td>
+        	<% [*1..10].each do |num| %>
+        		<td><%=num%></td>
+        	<%end%>
+	</tr>
+
+	<% for letter in [*"A".."J"] do %>
+	   <tr>
+	   		<td><%=letter%></td>  
+			<% @my_board.grid.each do |key, value| %>
+				<% if key.to_s =~ /#^{letter}/ %>
+					<td><%=key.content%></td>
+				<%end%>
+			<%end%>
+		</tr>
+    <%end%>  
+</table>
+
+<h3>Please place your Aircraft Carrier (size 5)!</h3>
+
+	<form action="/aircraft_carrier" method="get">
+		<input type="radio" name="orientation" value="vertically">Down<br>
+		<input type="radio" name="orientation" value="horisontally">To the right<br>
+		Starting coordinate: <input type="text" name="coordinate"><br>
+		<input type="submit" value="Submit">
+	</form>

@@ -1,0 +1,27 @@
+<h3>Please place your Destroyer (size 3)!</h3>
+
+	<form action="/destroyer" method="get">
+		<input type="radio" name="orientation" value="vertically">Down<br>
+		<input type="radio" name="orientation" value="horisontally">To the right<br>
+		Starting coordinate: <input type="text" name="coordinate"><br>
+		<input type="submit" value="Submit">
+	</form>
+<table border="1px"
+	<tr>
+		<td>*</td>
+        	<% [*1..10].each do |num| %>
+        		<td><%=num%></td>
+        	<%end%>
+	</tr>
+
+	<% for letter in [*"A".."J"] do %>
+	   <tr>
+	   		<td><%=letter%></td>  
+			<% @my_board.grid.each do |key, value| %>
+				<% if key.to_s =~ /^#{letter}/ %>
+					<td><%=value.content%></td>
+				<%end%>
+			<%end%>
+		</tr>
+    <%end%>  
+</table>
