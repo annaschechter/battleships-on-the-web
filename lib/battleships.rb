@@ -4,6 +4,7 @@ require_relative 'player'
 require_relative 'board'
 require_relative 'cell'
 require_relative 'ship'
+require_relative 'water'
 
 
 
@@ -49,7 +50,6 @@ class BattleShips < Sinatra::Base
 
   get '/aircraft_carrier' do
     @my_board = session[:board]
-    #@ships = [Ship.aircraft_carrier, Ship.battleship, Ship.destroyer, Ship.submarine, Ship.patrol_boat]
     @my_board.place(Ship.aircraft_carrier, params[:coordinate].to_sym, params[:orientation].to_sym)
     erb :aircraft_carrier
   end
@@ -68,16 +68,28 @@ class BattleShips < Sinatra::Base
 
   get '/destroyer' do
     @my_board = session[:board]
-    @my_board.place(Ship.patrol_boat, params[:coordinate].to_sym, params[:orientation].to_sym)
+    @my_board.place(Ship.destroyer, params[:coordinate].to_sym, params[:orientation].to_sym)
     erb :destroyer
   end
 
   get '/shooting' do
+    @my_board = session[:board]
+    @my_board.place(Ship.patrol_boat, params[:coordinate].to_sym, params[:orientation].to_sym)
+    @my_board.grid.each {|key, value| value.content = Water.new if value.content.nil?}
+    @enemy_board = Board.new(Cell)
+    session[:enemy_board] = @enemy_board
+    erb :shooting
+  end
+
+  get '/shot' do
     @name = session[:name]
     @my_board = session[:board]
-    @enemy_board = Board.new(Cell)
-    session[:e_board] = @enemy_board
-    erb :shooting
+    @enemy_board = session[:enemy_board]
+    erb :shot
+  end
+
+  post '/shot' do
+    GAME.shoots(params[:coordinates])
   end
 
   # start the server if ruby file executed directly

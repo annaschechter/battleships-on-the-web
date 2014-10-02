@@ -12,7 +12,7 @@
 	   		<td><%=letter%></td>  
 			<% @my_board.grid.each do |key, value| %>
 				<% if key.to_s =~ /^#{letter}/ %>
-					<td><%=value.content%></td>
+					<td><%=value.content.class%></td>
 				<%end%>
 			<%end%>
 		</tr>
@@ -33,20 +33,13 @@
 	   		<td><%=letter%></td>  
 			<% @enemy_board.grid.each do |key, value| %>
 				<% if key.to_s =~ /^#{letter}/ %>
-					<td><%=value.content%></td>
+					<td><%=value.content.class%></td>
 				<%end%>
 			<%end%>
 		</tr>
     <%end%>  
 </table>
 
+<a href="/shot">Start Shooting</a>
 
-<% if GAME.player1.name.to_s == @name.to_s%> 
-	    <form action="/shot" method="get">
-		Shooting coordinate: <input type="text" name="coordinate"><br>
-		<input type="submit" value="Submit">
-	    </form>
-<% else%>
-	    <h4>Please wait for opponent to shoot!</h4>
-<%end%>
 

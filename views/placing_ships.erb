@@ -13,7 +13,7 @@
 	   		<td><%=letter%></td>  
 			<% @my_board.grid.each do |key, value| %>
 				<% if key.to_s =~ /#^{letter}/ %>
-					<td><%=key.content%></td>
+					<td><%=key.content.class%></td>
 				<%end%>
 			<%end%>
 		</tr>

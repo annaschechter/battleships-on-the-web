@@ -1,0 +1,10 @@
+
+
+<% if GAME.player1.name.to_s == @name.to_s%> 
+	    <form action="/shot" method="post">
+		Shooting coordinate: <input type="text" name="coordinate"><br>
+		<input type="submit" value="Submit">
+	    </form>
+<% else%>
+	    <h4>Please wait for opponent to shoot!</h4>
+<%end%>
