@@ -5,7 +5,7 @@ Feature: Placing ships
 
 Scenario: Seeing the board
   Given I am on the placing_ships page
-  Then I should see "This is your board: * A B C D E F G H I J 1 # # # # # # # # # # 2 # # # # # # # # # # 3 # # # # # # # # # # 4 # # # # # # # # # # 5 # # # # # # # # # # 6 # # # # # # # # # # 7 # # # # # # # # # # 8 # # # # # # # # # # 9 # # # # # # # # # # 10 # # # # # # # # # #"
+  Then I should see "This is your board:"
   And I should see "Start placing ships" link
 
 Scenario: Placing first ship

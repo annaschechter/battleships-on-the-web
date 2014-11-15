@@ -25,12 +25,17 @@ class BattleShips < Sinatra::Base
   get '/make_player' do 
     player = Player.new 
     GAME.add_player(player) 
+    if GAME.has_two_players?
+      session[:current_player] = :player2
+    else 
+      session[:current_player] = :player1
+    end
     session[:name]= params[:name]
     player.name = session[:name]
     player.board = Board.new(Cell)
     session[:board] = player.board
 
-    if @name == ""
+    if session[:name] == ""
       redirect '/name'
     else 
       redirect '/message'
@@ -84,11 +89,18 @@ class BattleShips < Sinatra::Base
   get '/shot' do
     @name = session[:name]
     @my_board = session[:board]
+    if session[:current_player] == :player1
+      GAME.player1.board = @my_board
+    else session[:current_player] == :player2
+      GAME.player1.board = @my_board
+    end
     @enemy_board = session[:enemy_board]
+    puts GAME.inspect
     erb :shot
   end
 
   post '/shot' do
+   
     GAME.shoots(params[:coordinates])
   end
 

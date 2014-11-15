@@ -2,8 +2,8 @@ Given(/^I am on the placing_ships page$/) do
   visit '/placing_ships'
 end
 
-Then(/^I should see my board$/) do |table|
-  expect(page).to have_content table
+Then(/^I should see my board$/) do |text|
+  expect(page).to have_content text
 end
 
 Then(/^I should see "(.*?)" link$/) do |link|

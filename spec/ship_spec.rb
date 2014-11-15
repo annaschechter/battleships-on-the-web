@@ -33,24 +33,24 @@ describe Ship do
 		expect(ac.size).to eq 5
 	end
 
-	it "can create battleship" do 
+	it "can create a battleship" do 
 		battleship = Ship.battleship
 		expect(battleship.size).to eq 4
 	end
 
-	it "can create an destroyer" do 
+	it "can create a destroyer" do 
 		destroyer = Ship.destroyer
 		expect(destroyer.size).to eq 3
 	end
 
-	it "can create an submarine" do 
+	it "can create a submarine" do 
 		sub = Ship.submarine
 		expect(sub.size).to eq 3
 	end
 
-	it "can create an patrol boat" do 
+	it "can create a patrol boat" do 
 		pb = Ship.patrol_boat
-		expect(pb.size).to eq 5
+		expect(pb.size).to eq 2
 	end
 
 
